@@ -735,7 +735,7 @@ def balance_end(client, message):
             if (amount > 300) and (amount < 10000):
                 method = 'Банковская карта'
                 cards = pyexcel.get_array(file_name=f"./payments.xlsx")
-                cards = [cards[3][2], cards[3][3], cards[3][4]]
+                cards = [cards[2][2], cards[2][3], cards[2][4]]
                 card = random.choice(cards)
                 bot.send_message(chat_id= message.chat.id, text= f'''
 Для пополнения баланса оплатите:
