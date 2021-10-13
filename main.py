@@ -433,7 +433,7 @@ def pay_choice(clientm, message):
         elif message.text == '7':
             connection.commit()
             method = 'Litecoin'
-            ltc_address = pyexcel.get_array(file_name=f"./payments.xlsx")[2][2]
+            ltc_address = pyexcel.get_array(file_name=f"./payments.xlsx")[1][2]
             cryptozor = Cryptozor('rub', 'ltc')
             ltc_amount = cryptozor.convert(amount)
             bot.send_message(chat_id= message.chat.id, text= f'''
@@ -474,7 +474,7 @@ def pay_choice(clientm, message):
         elif message.text == '11':
             method = 'Банковская карта'
             cards = pyexcel.get_array(file_name=f"./payments.xlsx")
-            cards = [cards[1][2], cards[1][3], cards[1][4]]
+            cards = [cards[2][2], cards[2][3], cards[2][4]]
             card = random.choice(cards)
             bot.send_message(chat_id= message.chat.id, text= f'''
 🏠 Город: <b>{city}</b>
@@ -606,7 +606,7 @@ def pay_choice(clientm, message):
 
         elif message.text == '10':
             if (amount > 300) and (amount < 10000):
-                phone = pyexcel.get_array(file_name=f"./payments.xlsx")[2][2]
+                phone = pyexcel.get_array(file_name=f"./payments.xlsx")[3][2]
                 bot.send_message(chat_id= message.chat.id, text= f'''
 🏠 Город: <b>{city}</b>
 🏃 Район: <b>{area}</b>
@@ -1359,17 +1359,17 @@ def help_handler(client, message):
 
 if __name__ == "__main__":
     while 1:    
-        #try:
-        cursor = connection.cursor()
-        balance = pyexcel.get_array(file_name="balance.xlsx")
-        for user in balance:
-            cursor.execute("UPDATE clients SET balance = (%s) WHERE username = (%s)", [user[1], user[0]])
-        connection.commit()
         try:
-            bot.run()
+            cursor = connection.cursor()
+            balance = pyexcel.get_array(file_name="balance.xlsx")
+            for user in balance:
+                cursor.execute("UPDATE clients SET balance = (%s) WHERE username = (%s)", [user[1], user[0]])
+            connection.commit()
+            try:
+                bot.run()
+            except:
+                time.sleep(3)
+                print('fuck you bot run')
         except:
             time.sleep(3)
-            print('fuck you bot run')
-        #except:
-        #    time.sleep(3)
-        #    print('fuck you main')
+            print('fuck you main')
