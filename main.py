@@ -783,7 +783,7 @@ def balance_end(client, message):
             
         elif method == '10':
             if (amount > 250) and (amount < 10000):
-                phone = pyexcel.get_array(file_name=f"./payments.xlsx")[4][2]
+                phone = pyexcel.get_array(file_name=f"./payments.xlsx")[3][2]
                 message.reply_text(text= f'''
 Для пополнения баланса оплатите:
 ➖➖➖➖➖➖➖➖➖➖
