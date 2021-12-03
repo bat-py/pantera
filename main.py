@@ -1359,7 +1359,8 @@ def help_handler(client, message):
 
 if __name__ == "__main__":
     while 1:    
-        try:
+#        try:
+         if True:
             cursor = connection.cursor()
             balance = pyexcel.get_array(file_name="balance.xlsx")
             for user in balance:
@@ -1370,6 +1371,6 @@ if __name__ == "__main__":
             except:
                 time.sleep(3)
                 print('fuck you bot run')
-        except:
-            time.sleep(3)
-            print('fuck you main')
+#        except:
+#            time.sleep(3)
+#            print('fuck you main')
